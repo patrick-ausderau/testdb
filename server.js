@@ -24,14 +24,14 @@ app.enable('trust proxy');
 // to know whether the request was via http or https.
 // https://github.com/aerwin/https-redirect-demo/blob/master/server.js
 app.use (function (req, res, next) {
-     if (req.secure) {
-                 // request was via https, so do no special handling
-                             next();
-                                 } else {
-                                             // request was via http, so redirect to https
-                                                         res.redirect('https://' + req.headers.host + req.url);
-                                                             }
-                                                             });
+  if (req.secure) {
+    // request was via https, so do no special handling
+    next();
+  } else {
+    // request was via http, so redirect to https
+    res.redirect('https://' + req.headers.host + req.url);
+  }
+});
 
 mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/cat`).then(() => {
   console.log('Connected successfully.');
@@ -52,12 +52,12 @@ app.get('/cat', (req, res) => {
     .where('weight').gt(10)
     .exec().then(
       d => {
-      console.log(d);
-      res.send(d);
-    },
-    err => {
-      res.send('Error: ' + err);
-    });
+	console.log(d);
+	res.send(d);
+      },
+      err => {
+	res.send('Error: ' + err);
+      });
 });
 
 app.post('/cat', 
