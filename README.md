@@ -7,4 +7,4 @@
 
 ---
 
-To [configure your .env](https://github.com/ilkkamtk/SSSF-course/blob/master/Slides/Week2/W2-4-Deploy_on_jelastic.md)
+To [configure your .env](https://ilkkamtk.github.io/SSSF-course/Slides/Week2/W2-4-Deploy_on_jelastic.html)
