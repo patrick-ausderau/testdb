@@ -5,7 +5,6 @@ const app = express();
 const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 
 const catSchema = new Schema({
@@ -34,7 +33,7 @@ app.use ((req, res, next) => {
   }
 });
 
-mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/cat`, {useMongoClient: true}).then(() => {
+mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/cat`).then(() => {
   console.log('Connected successfully.');
   app.listen(process.env.APP_PORT);
 }, err => {
@@ -51,7 +50,7 @@ app.get('/cat', (req, res) => {
   Cat.find()
     .where('age').gt(10)
     .where('weight').gt(10)
-    .exec().then(
+    .then(
       d => {
 	console.log(d);
 	res.send(d);
